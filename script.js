@@ -92,10 +92,12 @@ function initializeApp() {
         
         // Ensure proper initial screen display
         if (AppState.currentScreen === "welcome") {
-            const welcomeScreen = document.getElementById("welcome-screen");   
+            const welcomeScreen = document.getElementById("welcome-screen");
+            const nav = document.querySelector(".screen");
             if (welcomeScreen) {
                 welcomeScreen.style.display = "block";
                 welcomeScreen.classList.add("active");
+                welcomeScreen.style.display = "none";
             }
         }
         
@@ -2290,3 +2292,4 @@ window.setAnalyticsTimeframe = setAnalyticsTimeframe;
 window.closeToast = closeToast;
 
 console.log("Creator Flow Academy - Enhanced Platform Loaded Successfully!");
+
