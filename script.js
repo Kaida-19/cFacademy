@@ -58,8 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
  // Initialize the application
- 
-function initializeApp() {
+ function initializeApp() {
     console.log("Creator Flow Academy - Enhanced Platform Initializing...");
     
     try {
@@ -74,41 +73,37 @@ function initializeApp() {
 
         // Load saved state from localStorage
         loadAppState();
-        
-        // Initialize sidebar overlay for mobile
-        createSidebarOverlay();
-        
-        // Initialize drag and drop for file uploads
-        initializeDragAndDrop();
-        
-        // Initialize charts
-        initializeCharts();
-        
-        // Initialize notification system
-        initializeNotifications();
-        
-        // Start engagement tracking
-        initializeEngagementTracking();
-        
-        // Ensure proper initial screen display
-        if (AppState.currentScreen === "welcome") {
-            const welcomeScreen = document.getElementById("welcome-screen");
-            const nav = document.querySelector(".screen");
-            if (welcomeScreen) {
-                welcomeScreen.style.display = "block";
-                welcomeScreen.classList.add("active");
-                welcomeScreen.style.display = "none";
-            }
+
+        // Ensure only welcome screen shows at start
+        // First hide all screens
+        document.querySelectorAll('.screen').forEach(s => {
+            s.classList.remove('active');
+            s.style.display = 'none';
+        });
+        // Show only welcome screen
+        const welcomeScreen = document.getElementById("welcome-screen");
+        if (welcomeScreen) {
+            welcomeScreen.style.display = "block";
+            welcomeScreen.classList.add("active");
         }
-        
+
+        // Initialize other parts
+        createSidebarOverlay();
+        initializeDragAndDrop();
+        initializeCharts();
+        initializeNotifications();
+        initializeEngagementTracking();
+
+        // Optional: set current screen in state
+        AppState.currentScreen = "welcome";
+
         console.log("Application initialized successfully");
     } catch (error) {
         console.error("Error during initialization:", error);
         showToast("Application initialization failed. Please refresh the page.", "error");
     }
 }
-
-
+ 
  // Create sidebar overlay for mobile
  
 function createSidebarOverlay() {
@@ -2292,4 +2287,3 @@ window.setAnalyticsTimeframe = setAnalyticsTimeframe;
 window.closeToast = closeToast;
 
 console.log("Creator Flow Academy - Enhanced Platform Loaded Successfully!");
-
